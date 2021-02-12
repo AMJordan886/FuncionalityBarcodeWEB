@@ -1,95 +1,63 @@
+// ERRORES A SOLUCIONAR:
+// SOLO COMPARA NUMEROS
+// NO DA TIEMPO A INGRESAR EL PRIMER VALOR, DEBERIA HABER MAS DELAY EN EL SETINTERVAL O QUE COJA UN EVENTO PORQUE SI ESTÁ OYENDO Y LE QUEDA MENOS DE UN SEGUNDO APENAS ENTRAN CARACTERES
+// UNA VEZ SE LIMPIA EL CLEAR INTERVAL SE JODIO. YA HAY QUE REFRESCAR TODO
+// GASTA MUCHA MEMORIA TENER UN INTERVAL CORRIENDO TODO EL RATO
+//SOLO COMPARA NUMEROS  //AQUI SE PODRIA METER UN LISTENER DE ALGUN MODO
+
 
 const d = document;
-/*
-var $first = d.getElementById("first_input").value,
-    $second = d.getElementById("second_input").value,
-    $third = d.getElementById("third_input").value;
-*/
-/*
-focusMethod = function getFocus() {
+let $first = d.getElementById("first_input"),
+    $second = d.getElementById("second_input"),
+    $third = d.getElementById("third_input"),
+    $checkText = d.getElementById("checkText");
+
+function verifyContent() {
     d.getElementById("first_input").focus();
-    console.log("que pasa")
-    console.log($first)
 
-}*/
+    //FIRST INPUT INTERVAL
+    let firstInputInterval = setInterval(() => {
+        if ($first.value > 1) {
+            checkFirstInput();
+        }
+    }, 2000);
 
+    //SECOND INPUT INTERVAL
+    let secondInputInterval = setInterval(() => {
+        if ($first.value > 1 && $first.value == $second.value) {
+            checkSecondInput();
+        } if ($second.value > 1 && $first.value != $second.value) {
+            alert("Los codigos insertados no son iguales");
+            clearInterval(secondInputInterval);
+        }
+    }, 1000);
 
-//function funcionality(/*firstInput, secondInput, thirdInput*/) {
-    /*
-    setTimeout(() => {
-        }, 1000);
-      */
-//}
+    //THIRD INPUT INTERVAL
+    let thirdInputInterval = setInterval(() => {
+        if ($second.value > 1 && $second.value == $third.value) {
+            checkThirdInput();
+        } if /**/($third.value > 1 && $second.value != $third.value) {
+            alert("Los codigos insertados no son iguales");
+            clearInterval(thirdInputInterval);
+        }
+    }, 1000);
 
-
-//focusMethod();
-//funcionality();
-/*
-
-if ($first == $second){
-    console.log($first);
-} else{
-    alert("error")
-}*/
-
-
-/*function load(){
-}
-window.onload = load;*/
-
-//holaholahola
-
-
-function innerautofocus(){
-    let injectioninput = d.getElementById("div_input");
-    injectioninput.innerHTML = `<input type="text" placeholder="first" id="first_input" autofocus>`;
-    console.log("Cargando");
-}
-
-window.onload = innerautofocus;
-
-//window.onload = (innerautofocus);
-
-
-
-
-
-
-/*
-function verifyContent(){
-let $first = d.getElementById("first_input").value;
-if ($first > 0){
-    setTimeout(() => {
-        funcionality()
-    }, 8000);
-}
-}*/
-
-
-
-/*
-function verifyContent(){
-    let $first = d.getElementById("first_input").value;
-
-do {
-d.getElementById("second_input").value;
-
-} while ($first > 0)
-
-
-
-    if ($first > 0){
-        setTimeout(() => {
-            funcionality()
-        }, 8000);
+    function checkFirstInput() {
+        clearInterval(firstInputInterval);
+        d.getElementById("second_input").focus();
+        console.log("Primer valor añadido");
+    }
+    function checkSecondInput() {
+        clearInterval(secondInputInterval);
+        d.getElementById("third_input").focus();
+        console.log("Segundo valor añadido");
+    }
+    function checkThirdInput() {
+        clearInterval(thirdInputInterval);
+        console.log("Los codigos añadidos coinciden")
+        $checkText.innerHTML = `<p>Los codigos coinciden</p>`
     }
 }
-*/
+verifyContent()
 
-
-/*
-setInterval(() => {
-    funcionality()
-}, 5000);
-
-*/
+//5465465465456465456
